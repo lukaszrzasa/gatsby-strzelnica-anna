@@ -13,8 +13,8 @@ describe('useModal hook', () => {
     }
   });
 
-  it('close & open functions works properly', () => {
-    const { isVisible, open, close } = useModal(true);
+  it('close & open & toggle functions works properly', () => {
+    const { isVisible, open, close, toggle } = useModal(true);
     expect( isVisible ).toBeTruthy();
     close();
     expect( isVisible ).toBeFalsy();
@@ -22,6 +22,10 @@ describe('useModal hook', () => {
     expect( isVisible ).toBeTruthy();
     close();
     close();
+    expect( isVisible ).toBeFalsy();
+    toggle();
+    expect( isVisible ).toBeTruthy();
+    toggle();
     expect( isVisible ).toBeFalsy();
   });
 
