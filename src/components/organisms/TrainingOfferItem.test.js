@@ -1,6 +1,6 @@
 import React from 'react'
 import TrainingOfferItem from './TrainingOfferItem';
-import { colors } from '../theme/theme';
+import { colors } from '../../theme/theme';
 
 describe('TrainingOfferItem component', () => {
 

@@ -1,6 +1,6 @@
 import React from "react"
 import Modal from './Modal';
-import useModal from '../hooks/useModal';
+import useModal from '../../hooks/useModal';
 import { fireEvent } from "@testing-library/react"
 
 
