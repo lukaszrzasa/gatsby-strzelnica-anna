@@ -12,10 +12,9 @@ const Wrapper = styled.div`
 const IconWrapper = styled.div`
   width: 40px;
   text-align: center;
-`
+`;
 
-
-const CardListItem = ([icon, name]) => (
+const CardListItem = ({ icon, name }) => (
   <Wrapper>
     <IconWrapper>
       <Icon icon={icon}/>

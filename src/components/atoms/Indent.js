@@ -11,3 +11,5 @@ Indent.propTypes = {
 Indent.defaultProps = {
   size: 1
 }
+
+export default Indent;

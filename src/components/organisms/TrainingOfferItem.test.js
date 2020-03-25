@@ -1,6 +1,6 @@
 import React from 'react'
 import TrainingOfferItem from './TrainingOfferItem';
-import { colors } from '../../theme/theme';
+import { color } from '../../theme/theme';
 
 describe('TrainingOfferItem component', () => {
 
@@ -25,7 +25,7 @@ describe('TrainingOfferItem component', () => {
     expect( getByTestId('heading') ).toBeInTheDocument();
     expect( getByTestId('color') ).toBeInTheDocument();
     expect( getByTestId('paragraph') ).toBeInTheDocument();
-    expect( getByTestId('price') ).toHaveStyle(`color: ${colors.violet}`);
+    expect( getByTestId('price') ).toHaveStyle(`color: ${color.violet}`);
     expect( getByText(title) ).toBeInTheDocument();
     expect( getByText(description) ).toBeInTheDocument();
     expect( getAllByTestId('icon') ).toHaveLength(3);
