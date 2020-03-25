@@ -5,6 +5,7 @@ describe('AmmoItem component', () => {
 
   it('Should renders without errors', () => {
     const price = 2;
+    const weaponPrice = 2;
     const ammo = "9mm";
     const weapon = "GLOCK";
     const image = {/*TODO: gatsby image preset*/};
@@ -14,6 +15,7 @@ describe('AmmoItem component', () => {
         ammo={ammo}
         weapon={weapon}
         image={image}
+        weaponPrice={weaponPrice}
       />);
 
     expect( getByText(price) ).toBeInTheDocument();

@@ -6,13 +6,13 @@ describe('ServiceItem component', () => {
   it('Should renders without errors', () => {
     const name = 'Test';
     const description = 'some description';
-    const price = '2zł / osoba';
+    const priceStr = '2zł / osoba';
     const promo = '50% przy minimum 5 osobach';
     const { getByTestId, getByText } = render(
       <ServiceItem
         name={name}
         description={description}
-        price={price}
+        priceStr={priceStr}
         promo={promo}
       />);
     expect( getByText(name) ).toBeInTheDocument();

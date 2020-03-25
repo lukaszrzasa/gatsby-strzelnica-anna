@@ -12,7 +12,7 @@ export const BlockColor = styled.div`
 
 
 Color.proTypes = {
-  color: PropTypes.string,
+  color: PropTypes.string.isRequired,
 };
 
 export default Color;

@@ -21,6 +21,5 @@ describe('PageHeading component', () => {
     );
     expect( getByTestId('heading') ).toBeInTheDocument();
     expect( getAllByTestId('heading') ).toHaveLength(2);
-    expect( getByTestId('color') ).toBeInTheDocument();
   })
 })

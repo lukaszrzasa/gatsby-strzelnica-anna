@@ -29,4 +29,4 @@ const Image = () => {
   return <Img data-testid="image" fluid={data.placeholderImage.childImageSharp.fluid} />
 }
 
-export default Image
+export default Image//TODO

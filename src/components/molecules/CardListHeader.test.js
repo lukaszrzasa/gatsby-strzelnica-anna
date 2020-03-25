@@ -4,15 +4,15 @@ import CardListHeader from './CardListHeader';
 describe('CardListHeader', () => {
 
   it('Should renders properly', () => {
-    const left = 'Some text';
-    const right = 'Another';
+    const title = 'Some text';
+    const subtitle = 'Another';
     const { getByText } = render(
       <CardListHeader
-        left={left}
-        right={right}
+        title={title}
+        subtitle={subtitle}
       />
     );
-    expect( getByText(left) ).toBeInTheDocument();
-    expect( getByText(right) ).toBeInTheDocument();
+    expect( getByText(title) ).toBeInTheDocument();
+    expect( getByText(subtitle) ).toBeInTheDocument();
   })
 })

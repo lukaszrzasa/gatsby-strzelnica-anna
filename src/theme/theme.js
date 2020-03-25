@@ -9,8 +9,10 @@ export const color = {
   green: '#5dbe13',
   orange: '#fa7921',
   red: '#e55934',
-  gray: '#eeeeee',
+  gold: '#fec107',
+  grey: '#eeeeee',
   white: '#ffffff',
+  dark: '#333',
   black: '#000000',
   default: '#000000',
 };
