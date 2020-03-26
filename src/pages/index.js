@@ -1,44 +1,83 @@
 import React from "react"
 import Layout from '../components/templates/Default'
 import SEO from '../core/Seo'
-import GlobalStyle from '../theme/GlobalStyle'
-import theme from '../theme/theme'
-import { ThemeProvider } from 'styled-components'
-import styled from 'styled-components';
 import Button from '../components/atoms/Button'
+import Container from '../components/atoms/Container'
+import { Heading, HeadingSection } from '../components/atoms/Heading'
+import Paragraph from '../components/atoms/Paragraph'
+import { Link } from 'gatsby'
+import styled from 'styled-components';
+import SkewSection from '../components/molecules/SkewSection'
 
-const H1 = styled.div`
-  font-size: ${({theme}) => theme.fontSize.h1}rem;
-`
-const H2 = styled.div`
-  font-size: ${({theme}) => theme.fontSize.h2}rem;
-`
-const H3 = styled.div`
-  font-size: ${({theme}) => theme.fontSize.h3}rem;
-`
-const H4 = styled.div`
-  font-size: ${({theme}) => theme.fontSize.h4}rem;
-`
-const H5 = styled.div`
-  font-size: ${({theme}) => theme.fontSize.h5}rem;
-`
-const H6 = styled.div`
-  font-size: ${({theme}) => theme.fontSize.h6}rem;
-`
+const SectionWelcome = styled(Container)`
+  display: flex;
+  padding-top: 3rem;
+  > div {
+    width: 50%;
+    text-align: center;
+  }
+  ${({theme}) => theme.mediaQuery.mobile} {
+    width: 100%;
+  }
+`;
+
+const MobileHidden = styled.div`
+  display: block;
+  ${({theme}) => theme.mediaQuery.mobile} {
+    display: none;
+  }
+`;
+
+const SectionPricing = styled(Container)`
+  text-align: center;
+`;
+
+const PricingGallery = styled.div`
+  display: flex;
+  > div {
+    width: 33.33333%;
+    ${({theme}) => theme.mediaQuery.mobile} {
+      width: 100%;
+    }
+  }
+`;
+
+
+const sectionWelcome = (<SectionWelcome>
+  <div>
+    <HeadingSection>Rezerwacje</HeadingSection>
+    <Paragraph>Nie czekaj, zarezerwuj strzelnicę już dziś!</Paragraph>
+    <Link to="/rezerwacje">
+      <Button variant="violet" color="white">Zobacz wolne terminy</Button>
+    </Link>
+  </div>
+  <MobileHidden>
+    <HeadingSection>Wejdź na naszego facebooka</HeadingSection>
+    <Paragraph>Aby nie ominęło Cię żadne wydarzenie!</Paragraph>
+    <Link to="/">
+      <Button variant="blue" color="white">Odwiedź stronę na FB</Button>
+    </Link>
+  </MobileHidden>
+</SectionWelcome>);
+
+const sectionPricing = (<SkewSection>
+  <SectionPricing>
+    <HeadingSection>Cennik</HeadingSection>
+    <Paragraph>Zainteresowany naszą ofertą? Sprawdź aktualny cennik broni i amunicji, a także zobacz jakie pakiety przygotowaliśmy dla Ciebie!</Paragraph>
+    <PricingGallery>
+      {/*TODO: tu będą 3 zdjęcia*/}
+    </PricingGallery>
+    <Link to="/cennik">
+      <Button variant="green" color="white">Zapoznaj się z ofertą</Button>
+    </Link>
+  </SectionPricing>
+</SkewSection>);
 
 const IndexPage = () => (
   <Layout>
-    <SEO title="Home" />
-    <GlobalStyle/>
-    <ThemeProvider theme={theme}>
-      <H1>AAAsss</H1>
-      <H2>AAAsss</H2>
-      <H3>AAAsss</H3>
-      <H4>AAAsss</H4>
-      <H5>AAAsss</H5>
-      <H6>AAAsss</H6>
-      <Button variant="violet" color="white">Abecadło</Button>
-    </ThemeProvider>
+    <SEO title="Strona Główna" />
+    {sectionWelcome}
+    {sectionPricing}
   </Layout>
 )
 
