@@ -17,18 +17,18 @@ export const color = {
   default: '#000000',
 };
 
-  export const fontSize = {
-  h1: 3.583,
-  h2: 2.986,
-  h3: 2.488, // btn
-  h4: 2.074, // small btn
-  h5: 1.728,
-  h6: 1.444,
+export const size = {
+  xxl: 3.583,
+  xl: 2.986,
+  lg: 2.488, // btn
+  md: 2.074, // small btn
+  sm: 1.728,
+  xs: 1.444,
 };
 
 export const breakpoint = {
-  mobile: 900,
-  smallDesktop:1400,
+  mobile: 1200,
+  smallDesktop:1600,
   desktop: 999999,
 };
 
@@ -40,7 +40,7 @@ export const mediaQuery = {
 
 const theme = {
   color,
-  fontSize,
+  size,
   breakpoint,
   mediaQuery,
 };
