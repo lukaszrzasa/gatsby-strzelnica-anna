@@ -11,7 +11,10 @@ const StyledIcon = styled(FontAwesomeIcon)`
 const Icon = props => <StyledIcon data-testid="icon" {...props}/>
 
 Icon.proTypes = {
-  icon: PropTypes.string.isRequired,
+  icon: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]).isRequired,
   color: PropTypes.string,
 };
 
