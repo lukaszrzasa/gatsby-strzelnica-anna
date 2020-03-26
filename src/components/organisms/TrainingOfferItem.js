@@ -9,7 +9,7 @@ import Indent from '../atoms/Indent'
 
 export const getStars = (amount) => {
   if( amount === 0.5 ) return (<Icon icon="star-half"/>);
-  else [...Array(amount)].map((e,i) => <Icon key={i} icon="star"/>);
+  else return [...Array(amount)].map((e,i) => (<Icon key={i} icon="star"/>));
 }
 
 const Wrapper = styled.div`
@@ -55,14 +55,14 @@ const PriceMobile = styled.div`
 
 const TrainingOfferItem = ({stars, variant, title, description, price, children}) => {
   return (
-    <Wrapper>
-      <Header>
+    <Wrapper data-testid="training-offer-item-wrapper">
+      <Header data-testid="heading">
         {getStars(stars)}
-        <H3>{title}</H3>
+        <H3 data-testid="training-title">{title}</H3>
         <Indent size={2}>
-          <Paragraph>{description}</Paragraph>
+          <Paragraph data-testid="training-description">{description}</Paragraph>
         </Indent>
-        <PriceDesktop variant={variant}>{price} zł</PriceDesktop>
+        <PriceDesktop data-testid="price" variant={variant}>{price} zł</PriceDesktop>
       </Header>
       <Details>
         {children}

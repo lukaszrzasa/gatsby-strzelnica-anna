@@ -1,4 +1,5 @@
 import React from 'react'
+import { render } from '@testing-library/react'
 import AmmoItem from './AmmoItem';
 
 describe('AmmoItem component', () => {
@@ -9,7 +10,7 @@ describe('AmmoItem component', () => {
     const ammo = "9mm";
     const weapon = "GLOCK";
     const image = {/*TODO: gatsby image preset*/};
-    const { getByText, getByTestId } = render(
+    const { getByTestId } = render(
       <AmmoItem
         price={price}
         ammo={ammo}
@@ -18,9 +19,9 @@ describe('AmmoItem component', () => {
         weaponPrice={weaponPrice}
       />);
 
-    expect( getByText(price) ).toBeInTheDocument();
-    expect( getByText(ammo) ).toBeInTheDocument();
-    expect( getByText(weapon) ).toBeInTheDocument();
+    expect( getByTestId('ammo-price') ).toBeInTheDocument();
+    expect( getByTestId('ammo-name') ).toBeInTheDocument();
+    expect( getByTestId('ammo-name') ).toBeInTheDocument();
     expect( getByTestId('image') ).toBeInTheDocument();
   })
 

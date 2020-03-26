@@ -16,9 +16,9 @@ const Wrapper = styled.div`
 
 const CardListHeader = ({title, subtitle}) => {
   return (
-    <Wrapper>
-      <H5>{title}</H5>
-      <H5><Color color="gold">{subtitle}</Color></H5>
+    <Wrapper data-testid="card-list-header">
+      <H5 data-testid="title">{title}</H5>
+      <H5 data-testid="subtitle"><Color color="gold">{subtitle}</Color></H5>
     </Wrapper>
   )
 }

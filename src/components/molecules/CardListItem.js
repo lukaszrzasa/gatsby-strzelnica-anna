@@ -14,12 +14,12 @@ const IconWrapper = styled.div`
   text-align: center;
 `;
 
-const CardListItem = ({ icon, name }) => (
-  <Wrapper>
+const CardListItem = ({ icon, name, ...props }) => (
+  <Wrapper data-testid="card-list-item">
     <IconWrapper>
       <Icon icon={icon}/>
     </IconWrapper>
-    <H5>{name}</H5>
+    <H5 data-testid="list-item-name">{name}</H5>
   </Wrapper>
 );
 

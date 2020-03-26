@@ -47,14 +47,14 @@ const BodyWrapper = styled.div`
 `;
 
 
-const Modal = ({ innerRef, isVisible, children, ...props }) => {
+const Modal = ({ close, innerRef, isVisible, children, ...props }) => {
   return (
     <OuterWrapper isVisible={isVisible} data-testid="modal-outer">
       <Wrapper ref={innerRef} {...props} data-testid="modal-wrapper">
-        <Times data-testid="modal-times">
+        <Times data-testid="modal-times" onClick={close}>
           <Icon icon="times"/>
         </Times>
-        <BodyWrapper data-testid="modal-wrapper">
+        <BodyWrapper data-testid="modal-body-wrapper">
           {children}
         </BodyWrapper>
       </Wrapper>

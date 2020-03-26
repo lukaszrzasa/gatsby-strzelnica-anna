@@ -12,6 +12,10 @@ module.exports = {
     __PATH_PREFIX__: ``,
   },
   testURL: `http://localhost`,
-  setupFiles: [`<rootDir>/loadershim.js`],
-  setupFilesAfterEnv: ["<rootDir>/setup-test-env.js"],
+  setupFiles: [
+    `<rootDir>/loadershim.js`,
+  ],
+  setupFilesAfterEnv: [
+    "<rootDir>/setup-test-env.js"
+  ],
 }

@@ -18,17 +18,17 @@ const Price = styled.div`
 const ServiceItem = ({name, description, priceStr, promo}) => {
   return (
     <Wrapper>
-      <H3>
+      <H3 data-testid="service-name">
         <Color color="grey">
-          <stong>{name}</stong>
+          <strong>{name}</strong>
           {description}
         </Color>
       </H3>
       <Price>
-        <H3>
+        <H3 data-testid="service-price">
           <strong>{priceStr}</strong>
         </H3>
-        {promo && <H4>
+        {promo && <H4 data-testid="service-promo">
           <Color color="red">{promo}</Color>
         </H4>}
       </Price>

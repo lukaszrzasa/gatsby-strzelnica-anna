@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import CardListHeader from '../molecules/CardListHeader'
 import CardListItem from '../molecules/CardListItem'
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: flex;

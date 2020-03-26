@@ -34,7 +34,7 @@ const NavItem = ({icon, text, url}) => {
       <IconWrapper>
         <Icon icon={icon}/>
       </IconWrapper>
-      <Text>{text}</Text>
+      <Text data-testid="nav-item-text">{text}</Text>
     </Wrapper>
   )
 }

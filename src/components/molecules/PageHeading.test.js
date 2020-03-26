@@ -1,25 +1,26 @@
 import React from 'react'
+import { render } from '@testing-library/react'
 import PageHeading from './PageHeading';
+import theme from '../../theme/theme'
+import { ThemeProvider } from 'styled-components'
 
 describe('PageHeading component', () => {
 
   it('Should renders without error', () => {
     const title = 'The big one';
     const subtitle = 'I\'m so small';
-    const { getByTestId, getAllByTestId, rerender } = render(
+    const { getByTestId, getAllByTestId, rerender } = render(<ThemeProvider theme={theme}>
       <PageHeading
         title={title}
       />
-    );
-    expect( getByTestId('heading') ).toBeInTheDocument();
+    </ThemeProvider>);
     expect( getAllByTestId('heading') ).toHaveLength(1);
-    rerender(
+    rerender(<ThemeProvider theme={theme}>
       <PageHeading
         title={title}
         subtitle={subtitle}
       />
-    );
-    expect( getByTestId('heading') ).toBeInTheDocument();
+    </ThemeProvider>);
     expect( getAllByTestId('heading') ).toHaveLength(2);
   })
 })

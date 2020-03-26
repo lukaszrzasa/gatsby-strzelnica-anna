@@ -1,8 +1,10 @@
-import { faStarHalf } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faStarHalf, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
-const registerIcons = () => {
-  library.add(faStarHalf);
+export const registerIcons = () => {
+  library.add(
+    faStarHalf,
+    faTimes,
+    faStar,
+  );
 };
-
-export default registerIcons()

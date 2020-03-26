@@ -17,13 +17,13 @@ export const color = {
   default: '#000000',
 };
 
-export const fontSize = {
-  h1:3.583,
-  h2:2.986,
-  h3:2.488, // btn
-  h4:2.074, // small btn
-  h5:1.728,
-  h6:1.444,
+  export const fontSize = {
+  h1: 3.583,
+  h2: 2.986,
+  h3: 2.488, // btn
+  h4: 2.074, // small btn
+  h5: 1.728,
+  h6: 1.444,
 };
 
 export const breakpoint = {

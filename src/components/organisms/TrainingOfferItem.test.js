@@ -1,6 +1,11 @@
 import React from 'react'
+import { render } from '@testing-library/react'
 import TrainingOfferItem from './TrainingOfferItem';
-import { color } from '../../theme/theme';
+import theme, { color } from '../../theme/theme';
+import { ThemeProvider } from 'styled-components'
+import { registerIcons } from '../../core/registerIcons'
+
+registerIcons();
 
 describe('TrainingOfferItem component', () => {
 
@@ -10,24 +15,24 @@ describe('TrainingOfferItem component', () => {
     const title = 'Title';
     const description = 'This is very long description';
     const price = 200;
-    const { getAllByTestId, getByTestId, getByText } = render(<TrainingOfferItem
+    const { getAllByTestId, getByTestId } = render(<ThemeProvider theme={theme}>
+      <TrainingOfferItem
         stars={stars}
         variant={variant}
         title={title}
         description={description}
         price={price}
       >
-      <div data-testid="children">body</div>
-    </TrainingOfferItem>);
+        <div data-testid="children">body</div>
+      </TrainingOfferItem>
+    </ThemeProvider>);
     //
     expect( getByTestId('training-offer-item-wrapper') ).toBeInTheDocument();
     expect( getByTestId('children') ).toBeInTheDocument();
     expect( getByTestId('heading') ).toBeInTheDocument();
-    expect( getByTestId('color') ).toBeInTheDocument();
-    expect( getByTestId('paragraph') ).toBeInTheDocument();
     expect( getByTestId('price') ).toHaveStyle(`color: ${color.violet}`);
-    expect( getByText(title) ).toBeInTheDocument();
-    expect( getByText(description) ).toBeInTheDocument();
+    expect( getByTestId('training-title') ).toBeInTheDocument();
+    expect( getByTestId('training-description') ).toBeInTheDocument();
     expect( getAllByTestId('icon') ).toHaveLength(3);
   })
 })

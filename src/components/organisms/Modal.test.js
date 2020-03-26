@@ -1,74 +1,81 @@
 import React, { useRef } from 'react'
+import { render, fireEvent } from '@testing-library/react'
 import Modal from './Modal';
-import useModal from '../../hooks/useModal';
-import { fireEvent } from "@testing-library/react"
+import useModal from '../../hooks/useModal'
 import useDetectOutsideClick from '../../hooks/useDetectOutlideClick'
+import theme from '../../theme/theme'
+import { ThemeProvider } from 'styled-components'
+import { registerIcons } from '../../core/registerIcons'
+import { renderHook, act } from '@testing-library/react-hooks'
 
+registerIcons();
 
 const renderComponent = () => {
-  const { isVisible, open, close } = useModal(true);
-  const ref = useRef(null);
-  useDetectOutsideClick(ref, close);
+  const { result:modal } = renderHook(() => useModal(true));
+  const { result:ref } = renderHook(() => useRef(null));
+  const close = jest.fn(() => act(() => modal.current.close()));
+  const open = jest.fn(() => act(() => modal.current.open()));
+  renderHook(() => useDetectOutsideClick(ref.current, close));
 
-  const node = render(<Modal innerRef={ref} close={close} isVisible={isVisible}>
-    <h3>Heading</h3>
-    <p>Body</p>
-  </Modal>);
+  const node = render(<ThemeProvider theme={theme}>
+    <Modal innerRef={ref.current} close={close} isVisible={modal.current.isVisible}>
+      <h3>Heading</h3>
+      <p>Body</p>
+    </Modal>
+  </ThemeProvider>);
 
-  const times = node.getByTestId('modal-times');
-  const wrapper = node.getByTestId('modal-wrapper');
-  const body = node.getByTestId('modal-body');
   const outer = node.getByTestId('modal-outer');
+  const wrapper = node.getByTestId('modal-wrapper');
+  const body = node.getByTestId('modal-body-wrapper');
+  const times = node.getByTestId('modal-times');
 
   return {
     ...node,
-    times,
+    modal,
+    close,
+    open,
+    outer,
     wrapper,
     body,
-    outer,
-    modal: {
-      isVisible,
-      open,
-      close
-    },
+    times,
   };
 };
+
+const leftClick = { button: 1 };
 
 describe('Modal component', () => {
 
   it('Should render without errors', () => {
-    const { wrapper, times, body } = renderComponent();
+    const { outer, wrapper, body, times, } = renderComponent();
+    expect( outer ).toBeInTheDocument();
     expect( wrapper ).toBeInTheDocument();
     expect( body ).toBeInTheDocument();
     expect( times ).toBeInTheDocument();
   });
 
-  it('Should close the modal', () => {
-    const { wrapper, body, times, modal: { isVisible } } = renderComponent();
-    expect( isVisible ).toBeTruthy();
-    fireEvent.click(body);
-    expect( isVisible ).toBeTruthy();
-    expect( wrapper ).not.toHaveStyle('display: none;');
-    fireEvent.click(times);
-    expect( isVisible ).toBeFalsy();
-    expect( wrapper ).toHaveStyle('display: none;');
+  it('Should close the modal', async() => {
+    const { body, times, modal, close } = renderComponent();
+    expect( modal.current.isVisible ).toBeTruthy();
+    fireEvent.click(body, leftClick);
+    expect( modal.current.isVisible ).toBeTruthy();
+    fireEvent.click(times, leftClick);
+    expect( close ).toHaveBeenCalled();
+    expect( modal.current.isVisible ).toBeFalsy();
   });
 
   it('Should toggle visibility using hook methods', () => {
-    const { wrapper, modal: { isVisible, open, close } } = renderComponent();
+    const { close, open, modal } = renderComponent();
     close();
-    expect( isVisible ).toBeFalsy();
-    expect( wrapper ).toHaveStyle('display: none;');
+    expect( modal.current.isVisible ).toBeFalsy();
     open();
-    expect( isVisible ).toBeTruthy();
-    expect( wrapper ).not.toHaveStyle('display: none;');
+    expect( modal.current.isVisible ).toBeTruthy();
   });
 
   it('Should detect outside click', () => {
-    const { isVisible, outer } = renderComponent();
-    expect( isVisible ).toBeTruthy();
-    fireEvent.click( outer );
-    expect( isVisible ).toBeFalsy();
+    const { modal, outer } = renderComponent();
+    expect( modal.current.isVisible ).toBeTruthy();
+    fireEvent.mouseDown( outer, leftClick );
+    expect( modal.current.isVisible ).toBeFalsy();
   })
 
 });
