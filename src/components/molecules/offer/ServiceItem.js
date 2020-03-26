@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
-import { H3, H4 } from '../../atoms/Heading'
+import { H4, Heading } from '../../atoms/Heading'
 import Color from '../../atoms/Color'
 
 const Wrapper = styled.div`
@@ -18,16 +18,16 @@ const Price = styled.div`
 const ServiceItem = ({name, description, priceStr, promo}) => {
   return (
     <Wrapper>
-      <H3 data-testid="service-name">
+      <Heading data-testid="service-name">
         <Color color="grey">
           <strong>{name}</strong>
           {description}
         </Color>
-      </H3>
+      </Heading>
       <Price>
-        <H3 data-testid="service-price">
+        <Heading data-testid="service-price">
           <strong>{priceStr}</strong>
-        </H3>
+        </Heading>
         {promo && <H4 data-testid="service-promo">
           <Color color="red">{promo}</Color>
         </H4>}

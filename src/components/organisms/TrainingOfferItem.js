@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Icon from '../atoms/Icon'
 import styled from 'styled-components'
-import { H3 } from '../atoms/Heading'
+import { Heading } from '../atoms/Heading'
 import Paragraph from '../atoms/Paragraph'
 import getColor from '../../theme/helpers/getColor'
 import Indent from '../atoms/Indent'
@@ -58,7 +58,7 @@ const TrainingOfferItem = ({stars, variant, title, description, price, children}
     <Wrapper data-testid="training-offer-item-wrapper">
       <Header data-testid="heading">
         {getStars(stars)}
-        <H3 data-testid="training-title">{title}</H3>
+        <Heading data-testid="training-title">{title}</Heading>
         <Indent size={2}>
           <Paragraph data-testid="training-description">{description}</Paragraph>
         </Indent>

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
-import { H1, H3 } from '../atoms/Heading'
+import { HeadingPage, HeadingSection } from '../atoms/Heading'
 import Color from '../atoms/Color'
 
 const Wrapper = styled.div`
@@ -17,11 +17,11 @@ const BorderSeparation = styled.div`
 const PageHeading = ({title, subtitle}) => {
   return (
     <Wrapper data-testid="page-heading-wrapper">
-      <H1 data-testid="heading">{title}</H1>
+      <HeadingPage data-testid="heading">{title}</HeadingPage>
       <BorderSeparation/>
-      {subtitle && <H3 data-testid="heading">
+      {subtitle && <HeadingSection data-testid="heading">
         <Color color="grey">{subtitle}</Color>
-      </H3>}
+      </HeadingSection>}
     </Wrapper>
   )
 }
