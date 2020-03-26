@@ -3,38 +3,46 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled from 'styled-components';
 import Icon from '../atoms/Icon'
-import { H4 } from '../atoms/Heading'
 
-const Wrapper = styled.div`
+const Wrapper = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
+const StyledLink = styled(Link)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const IconWrapper = styled.div`
   text-align: center;
-  width: 100%;
   display: none;
-  
+  width: 4rem;
+  font-size: 3rem;
   ${({theme}) => theme.mediaQuery.mobile} {
     display: block;
   }
 `;
 
-const Text = styled(H4)`
+const Text = styled.div`
   text-align: center;
-  width: 100%;
 `;
 
 
 const NavItem = ({icon, text, url}) => {
   return (
-    <Wrapper data-testid="url" as={Link} to={url}>
-      <IconWrapper>
-        <Icon icon={icon}/>
-      </IconWrapper>
-      <Text data-testid="nav-item-text">{text}</Text>
+    <Wrapper data-testid="nav-item-wrapper">
+      <StyledLink to={url} data-testid="url">
+        <IconWrapper>
+          <Icon icon={icon}/>
+        </IconWrapper>
+        <Text data-testid="nav-item-text">
+          {text}
+        </Text>
+      </StyledLink>
     </Wrapper>
   )
 }
