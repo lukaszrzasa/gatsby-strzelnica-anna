@@ -1,6 +1,5 @@
 import {createGlobalStyle} from 'styled-components';
 
-
 // noinspection CssUnknownTarget
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600&display=swap&subset=latin-ext');
