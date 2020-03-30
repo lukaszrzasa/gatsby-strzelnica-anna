@@ -8,7 +8,7 @@ import getColor from '../../theme/helpers/getColor'
 import Indent from '../atoms/Indent'
 
 export const getStars = (amount) => {
-  if( amount === 0.5 ) return (<Icon icon="star-half"/>);
+  if( amount === 0.5 ) return (<Icon icon="star-half-alt"/>);
   else return [...Array(amount)].map((e,i) => (<Icon key={i} icon="star"/>));
 }
 

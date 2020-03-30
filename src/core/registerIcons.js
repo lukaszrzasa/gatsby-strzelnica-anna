@@ -1,10 +1,10 @@
 import {
   faBars,
   faBullseye, faCalendarAlt,
-  faDollarSign, faHistory,
+  faDollarSign,
   faHome, faIdCard, faInfoCircle, faMedal,
   faStar,
-  faStarHalf,
+  faStarHalfAlt,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -12,7 +12,7 @@ import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg
 
 export const registerIcons = () => {
   library.add(
-    faStarHalf,
+    faStarHalfAlt,
     faTimes,
     faStar,
     faTimes,
