@@ -29,12 +29,12 @@ const Button = styled.button`
     line-height: ${md}rem;
   }
   
-  ${mediaQuery.mobile} {
-    padding: ${sm/2}rem ${sm}rem;
-    border-radius: ${sm*2}rem;
-    font-size: ${sm}rem;
-    line-height: ${sm}rem;
-  }
+  // ${mediaQuery.mobile} {
+  //   padding: ${sm/2}rem ${sm}rem;
+  //   border-radius: ${sm*2}rem;
+  //   font-size: ${sm}rem;
+  //   line-height: ${sm}rem;
+  // }
 `;
 
 Button.propTypes = {

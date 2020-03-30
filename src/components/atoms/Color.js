@@ -6,12 +6,15 @@ const Color = styled.span`
   color: ${({color}) => getColor(color)};
 `;
 
-export const BlockColor = styled.div`
+export const ColorBlock = styled.div`
   color: ${({color}) => getColor(color)};
 `;
 
-
 Color.proTypes = {
+  color: PropTypes.string.isRequired,
+};
+
+ColorBlock.proTypes = {
   color: PropTypes.string.isRequired,
 };
 
