@@ -1,4 +1,5 @@
 import React from "react"
+import PropTypes from 'prop-types'
 // import Img from "gatsby-image"
 
 /*
@@ -26,6 +27,10 @@ const Image = () => {
   // `)
   return <img data-testid="image" src="" alt=""/>;
   // return <Img data-testid="image" fluid={data.placeholderImage.childImageSharp.fluid} />
-}
+};
+
+Image.propTypes = {
+  fluid: PropTypes.object.isRequired,
+};
 
 export default Image//TODO
