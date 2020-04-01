@@ -59,7 +59,7 @@ const TrainingOfferItem = ({stars, variant, title, description, price, children}
       <Header data-testid="heading">
         {getStars(stars)}
         <Heading data-testid="training-title">{title}</Heading>
-        <Indent size={2}>
+        <Indent size="md">
           <Paragraph data-testid="training-description">{description}</Paragraph>
         </Indent>
         <PriceDesktop data-testid="price" variant={variant}>{price} zł</PriceDesktop>
