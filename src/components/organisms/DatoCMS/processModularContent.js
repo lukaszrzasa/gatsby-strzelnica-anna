@@ -2,32 +2,57 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import getStyles from './getStyles'
 import Paragraph from '../../atoms/Paragraph'
-import { DOUBLE_IMAGE, HEADING, IMAGE, PARAGRAPH, PARAGRAPH_WITH_IMG } from './types'
+import {
+  DOUBLE_IMAGE,
+  HEADING,
+  FULL_WIDTH_IMAGE,
+  PARAGRAPH,
+  PARAGRAPH_WITH_IMG,
+  LIST,
+  GALLERY,
+  ATTACHMENT,
+} from './types'
 import ParagraphWithImage from '../../molecules/ParagraphWithImage'
 import Image from '../../atoms/Image'
+import List from '../../atoms/List'
+import { Heading } from '../../atoms/Heading'
 
 const processModularContent = (content) => {
-  return content.map(item => {
+  return content.map((item, index) => {
 
     // separate items from DatoCMS
-    const { type, text, options, image } = item; //some of them were null/undefined
+    const { model, text, options, image } = item; //some of them were null/undefined
 
     // options[] => css styles{}
-    const styles = getStyles(options);
+    const style = options ? getStyles(options) : {};
+    //
+    const props = {
+      style,
+      key: index,
+    };
 
-    switch( type ) {
+    switch( model.name ) {
       case PARAGRAPH:
-        return <Paragraph styles={styles}>{text}</Paragraph>
+        return <Paragraph {...props}>{text}</Paragraph>
       case PARAGRAPH_WITH_IMG:
-        return <ParagraphWithImage image={image} text={text} styles={styles}/>;
-      case IMAGE:
-        return <Image data={image} styles={styles}/>;
+        return <ParagraphWithImage {...props} image={image} text={text}/>;
+      case FULL_WIDTH_IMAGE:
+        return <Image {...props} fluid={image}/>;
       case DOUBLE_IMAGE:
+        console.warn('TODO');
         return 'double-image';
+      case GALLERY:
+        console.warn('TODO');
+        return 'gallery';
+      case ATTACHMENT:
+        console.warn('TODO');
+        return 'attachment';
       case HEADING:
-        return 'heading';
+        return <Heading {...props}>{text}</Heading>;
+      case LIST:
+        return <List {...props} items={text.split('\n')}/>
       default:
-        console.warning(`Unknown type "${type}"`)
+        console.warn(`Unknown type "${model.name}"`)
         return null;
     }
   });
