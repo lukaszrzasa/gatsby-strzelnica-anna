@@ -3,6 +3,7 @@ import SEO from '../core/Seo'
 import Container from '../components/atoms/Container'
 import React from 'react'
 import PageHeading from '../components/molecules/PageHeading'
+import Calendar from '../components/organisms/Calendar'
 
 
 const seo = {
@@ -17,6 +18,7 @@ const Contact = () => {
         <PageHeading
           title={seo.title}
         />
+        <Calendar/>
       </Container>
     </Default>
   );

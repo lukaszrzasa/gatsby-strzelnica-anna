@@ -15,7 +15,7 @@ const Day = styled.div`
   ${({isSelected}) => isSelected && css`
     background-color: blue;
   `}
-  ${({isDisabled}) => isDisabled && css`
+  ${({isNotCurrentMonth}) => isNotCurrentMonth && css`
     color: #aaa;
   `}
 `;
