@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 import navItems from './navItems'
-import NavItem, { IconWrapper } from '../../molecules/NavItem'
+import NavItem from '../../molecules/NavItem'
 import Container from '../../atoms/Container'
 import { Link } from 'gatsby';
 import Icon from '../../atoms/Icon'
@@ -127,6 +127,7 @@ const PageHeader = () => {
   const stickyNav = useRef(null);
   const [ isNavVisible, setIsNavVisible ] = useState(false);
 
+  const handleClick = () => setIsNavVisible(!isNavVisible);
 
   return (
     <Wrapper ref={stickyNav} isNavVisible={isNavVisible}>
@@ -135,12 +136,17 @@ const PageHeader = () => {
           <OwnerLogo>Str</OwnerLogo>
           <Logo>logo</Logo>
           <Socials>
-            <Link to={""}><Icon style={{color: '#f60000'}} icon={['fab', 'youtube']}/></Link>
-            <Link to={""}><Icon style={{color: '#da0053'}} icon={['fab', 'instagram']}/></Link>
-            <Link to={""}><Icon style={{color: '#4364aa'}} icon={['fab', 'facebook']}/></Link>
+            <Link to={'/'}><Icon style={{color: '#f60000'}} icon={['fab', 'youtube']}/></Link>
+            <Link to={'/'}><Icon style={{color: '#da0053'}} icon={['fab', 'instagram']}/></Link>
+            <Link to={'/'}><Icon style={{color: '#4364aa'}} icon={['fab', 'facebook']}/></Link>
           </Socials>
           <ToggleMenu>
-            <div onClick={() => setIsNavVisible(!isNavVisible)}>
+            <div
+              role="button"
+              onClick={handleClick}
+              onKeyDown={handleClick}
+              tabIndex={0}
+            >
               <Icon icon="bars"/>
             </div>
           </ToggleMenu>

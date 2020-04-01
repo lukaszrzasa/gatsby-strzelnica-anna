@@ -2,31 +2,31 @@ const navItems = [
   {
     icon: 'home',
     text: 'Strona główna',
-    url: '/',
+    url: '',
   },{
     icon: 'dollar-sign',
     text: 'Cennik',
-    url: '/cennik',
+    url: 'cennik',
   },{
     icon: 'calendar-alt',
     text: 'Rezerwacje',
-    url: '/rezerwacje',
+    url: 'rezerwacje',
   },{
     icon: 'bullseye',
     text: 'Szkolenia',
-    url: '/szkolenia',
+    url: 'szkolenia',
   },{
     icon: 'medal',
     text: '10 Strzałów',
-    url: '/10-strzalow',
+    url: '10-strzalow',
   },{
     icon: 'id-card',
     text: 'Kontakt',
-    url: '/kontakt',
+    url: 'kontakt',
   },{
     icon: 'info-circle',
     text: 'O nas',
-    url: '/o-nas',
+    url: 'o-nas',
   }
 ];
 
