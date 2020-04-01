@@ -20,7 +20,7 @@ const ParagraphWithImage = ({text, image}) => {
         {text}
       </Paragraph>
       <div>
-        <Image data={image}/>
+        <Image fluid={image}/>
       </div>
     </Wrapper>
   )
