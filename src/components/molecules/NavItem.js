@@ -35,7 +35,7 @@ const Text = styled.div`
 const NavItem = ({icon, text, url}) => {
   return (
     <Wrapper data-testid="nav-item-wrapper">
-      <StyledLink to={url} data-testid="url">
+      <StyledLink to={`/${url}`} data-testid="url">
         <IconWrapper>
           <Icon icon={icon}/>
         </IconWrapper>
