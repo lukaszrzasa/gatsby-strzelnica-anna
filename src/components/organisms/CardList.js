@@ -7,7 +7,15 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  border-radius: 1rem;
+  overflow: hidden;
 `;
+
+const ItemsWrapper = styled.div`
+  border: solid 1px ${({theme}) => theme.color.grey};
+  border-top: none;
+  border-radius: 0 0 1rem 1rem;
+`
 
 
 const CardList = ({ header:{ title, subtitle }, items }) => {
@@ -17,11 +25,13 @@ const CardList = ({ header:{ title, subtitle }, items }) => {
         title={title}
         subtitle={subtitle}
       />
-      {items.map( ({icon, name}, index) => <CardListItem
-        key={index}
-        icon={icon}
-        name={name}
-      /> )}
+      <ItemsWrapper>
+        {items.map( ({icon, name}, index) => <CardListItem
+          key={index}
+          icon={icon}
+          name={name}
+        /> )}
+      </ItemsWrapper>
     </Wrapper>
   )
 }
