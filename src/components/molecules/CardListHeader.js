@@ -8,8 +8,10 @@ const Wrapper = styled.div`
   background-color: ${({theme}) => theme.color.dark};
   display: flex;
   justify-content: space-between;
+  padding: 1.2rem 2rem;
   h5 {
     margin: 0;
+    color: #fff;
   }
 `;
 

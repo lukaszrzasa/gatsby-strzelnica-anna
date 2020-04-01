@@ -7,6 +7,7 @@ import { H5 } from '../atoms/Heading'
 const Wrapper = styled.div`
   border-bottom: solid 1px ${({theme}) => theme.color.grey};
   display: flex;
+  padding: 1.2rem 2rem;
 `;
 
 const IconWrapper = styled.div`
@@ -19,7 +20,7 @@ const CardListItem = ({ icon, name, ...props }) => (
     <IconWrapper>
       <Icon icon={icon}/>
     </IconWrapper>
-    <H5 data-testid="list-item-name">{name}</H5>
+    <span data-testid="list-item-name">{name}</span>
   </Wrapper>
 );
 
