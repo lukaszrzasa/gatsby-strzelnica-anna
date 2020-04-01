@@ -12,7 +12,7 @@ const Wrapper = styled.div`
 const PageHeaderImage = ({image}) => {
   return (
     <Wrapper>
-      <Image data={image}/>
+      <Image fluid={image}/>
     </Wrapper>
   )
 }

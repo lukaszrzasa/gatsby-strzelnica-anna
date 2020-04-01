@@ -29,7 +29,7 @@ const AmmoItem = ({image, price, weapon, ammo, weaponPrice}) => {
   return (
     <Wrapper data-testid="ammo-item-wrapper">
       <ImageCover>
-        <Image data={image}/>
+        <Image fluid={image}/>
         <Price data-testid="ammo-price">{price}</Price>
         <WeaponPrice data-testid="weapon-price">{weaponPrice}</WeaponPrice>
       </ImageCover>
