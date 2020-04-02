@@ -1,4 +1,13 @@
-import { SET_DATE, SET_DAY_DATA, SET_HOUR_START, SET_HOURS, SET_INFO, SET_PEOPLE, SET_PHONE } from './types'
+import {
+  SET_DATE,
+  SET_DAY,
+  SET_HOUR_START,
+  SET_HOURS,
+  SET_INFO,
+  SET_PEOPLE,
+  SET_PHONE,
+  SET_MONTH,
+} from './types'
 
 export const setHourStart = (hour) => ({
   type: SET_HOUR_START,
@@ -35,7 +44,13 @@ export const setDate = (year, month, day) => ({
 });
 
 
-export const setDayData = (obj) => ({
-  type: SET_DAY_DATA,
-  payload: obj,
+export const setMonth = (data) => ({
+  type: SET_MONTH,
+  payload: data,
+});
+
+
+export const setDay = (data) => ({
+  type: SET_DAY,
+  payload: data,
 })

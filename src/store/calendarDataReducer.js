@@ -1,15 +1,28 @@
-import { SET_DAY_DATA } from './types'
+import { SET_DAY, SET_MONTH } from './types'
 
-const initialState = {};
+const initialState = {
+  dayStatus: {},
+  monthStatus: {},
+};
 
 const calendarDataReducer = (state = initialState, action) => {
-  if (action.type === SET_DAY_DATA) {
-    return {
-      ...state,
-      ...action.payload,
-    }
-  } else {
-    return state;
+  switch (action.type) {
+    case SET_DAY:
+      return {
+        ...state,
+        dayStatus: {
+          ...action.payload,
+        }
+      }
+    case SET_MONTH:
+      return {
+        ...state,
+        monthStatus: {
+          ...action.payload,
+        }
+      };
+    default:
+      return state
   }
 }
 
