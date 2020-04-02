@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components';
+import styled from 'styled-components'
 import Icon from '../atoms/Icon'
-import { H5 } from '../atoms/Heading'
 
 const Wrapper = styled.div`
   border-bottom: solid 1px ${({theme}) => theme.color.grey};

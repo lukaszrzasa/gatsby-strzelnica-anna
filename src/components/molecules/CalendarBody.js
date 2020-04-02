@@ -41,7 +41,6 @@ const CalendarBody = ({
   }
   return (
     <Wrapper>
-      {console.log(currentStartOn, prevLength, currentLength)}
       {days}
     </Wrapper>
   )
