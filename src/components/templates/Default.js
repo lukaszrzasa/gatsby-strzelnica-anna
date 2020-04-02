@@ -8,6 +8,8 @@ import GlobalStyle from '../../theme/GlobalStyle'
 import { registerIcons } from '../../core/registerIcons'
 import PageFooter from './includes/PageFooter'
 import PageHeaderImage from '../molecules/PageHeaderImage'
+import { Provider } from 'react-redux'
+import { store } from '../../store/rootReducer'
 
 registerIcons();
 
@@ -20,11 +22,13 @@ const Layout = ({ children, headerImage }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <PageHeader />
-      {headerImage && <PageHeaderImage image={headerImage}/>}
-      <Main>{children}</Main>
-      <PageFooter />
+      <Provider store={store}>
+        <GlobalStyle />
+        <PageHeader />
+        {headerImage && <PageHeaderImage image={headerImage}/>}
+        <Main>{children}</Main>
+        <PageFooter />
+      </Provider>
     </ThemeProvider>
   )
 }
