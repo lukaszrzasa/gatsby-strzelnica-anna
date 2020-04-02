@@ -3,7 +3,7 @@ import {
   faBars,
   faBullseye, faCalendarAlt, faChalkboard, faCheck, faClock, faColumns,
   faDollarSign, faGlasses, faHardHat, faHeadphones,
-  faHome, faIdCard, faInfoCircle, faLeaf, faMapMarkerAlt, faMedal, faPhone, faShieldAlt,
+  faHome, faIdCard, faInfoCircle, faLeaf, faMapMarkerAlt, faMedal, faMinus, faPhone, faPlus, faShieldAlt,
   faStar,
   faStarHalfAlt,
   faTimes, faUserShield,
@@ -41,5 +41,7 @@ export const registerIcons = () => {
     faColumns,
     faHardHat,
     faLeaf,
+    faPlus,
+    faMinus,
   );
 };
