@@ -22,6 +22,11 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
   }
+  
+  button::-moz-focus-inner {
+    border: 0;
+  }
+
 `;
 
 export default GlobalStyle;

@@ -1,6 +1,12 @@
-require("dotenv").config();
+require("dotenv").config({
+  path: `.env`,
+})
 
 module.exports = {
+  proxy: {
+    prefix: "/calendar",
+    url: "http://localhost",
+  },
   siteMetadata: {
     title: `Strzelnica Anna`,
     description: ``,
