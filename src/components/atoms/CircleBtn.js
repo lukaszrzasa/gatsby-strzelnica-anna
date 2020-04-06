@@ -7,6 +7,12 @@ const CircleBtn = styled.button`
   text-align: center;
   border-radius: 50%;
   background-color: ${({theme}) => theme.color.grey};
+  border: none;
+  cursor: pointer;
+  &:focus {
+    outline: none !important;
+  }
+  padding: 0;
 `;
 
 
