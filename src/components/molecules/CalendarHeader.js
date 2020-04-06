@@ -4,7 +4,8 @@ import HeaderButton from '../atoms/calendar/HeaderButton'
 import Icon from '../atoms/Icon'
 import HeaderInfo from '../atoms/calendar/HeaderInfo'
 import HeaderWeekDay from '../atoms/calendar/HeaderWeekDay'
-import PropTypes from 'prop-types'
+import { useDispatch, useSelector } from 'react-redux'
+import { setDate } from '../../store/actions'
 
 
 const Wrapper = styled.div``;
@@ -17,19 +18,42 @@ const WeekDays = styled(Wrapper)`
   display: flex;
 `;
 
+const monthNames = ['Sty', 'Lut', 'Mar', 'Kwi', 'Maj', 'Cze', 'Lip', 'Sie', 'Wrz', 'Paź', 'Lis', 'Gru'];
 const weekDays = ['Pn', 'Wt', 'Śr', 'Czw', 'Pt', 'So', 'Nd'];
 
-const CalendarHeader = ({heading}) => {
+const CalendarHeader = () => {
+  const { year, month } = useSelector(({reservation}) => reservation);
+  const dispatch = useDispatch();
+
+  const handleClick = (dir) => {
+    let m = month + dir;
+    let y = year;
+    if(m < 0) {
+      m = 11;
+      y--;
+    } else if(m>11){
+      m = 0;
+      y++;
+    }
+    dispatch(setDate(y,m,1));
+  }
+
   return (
     <Wrapper data-testid="calendar-heading">
       <Nav data-testid="calendar-navigation">
-        <HeaderButton data-testid="calendar-navigation-button-1">
+        <HeaderButton
+          data-testid="calendar-navigation-button-1"
+          onClick={()=>handleClick(-1)}
+        >
           <Icon icon="times"/>
         </HeaderButton>
         <HeaderInfo data-testid="calendar-navigation-name">
-          {heading}
+          {`${monthNames[month]} ${year}`}
         </HeaderInfo>
-        <HeaderButton data-testid="calendar-navigation-button-2">
+        <HeaderButton
+          data-testid="calendar-navigation-button-2"
+          onClick={()=>handleClick(1)}
+        >
           <Icon icon="times"/>
         </HeaderButton>
       </Nav>
@@ -43,10 +67,6 @@ const CalendarHeader = ({heading}) => {
       </WeekDays>
     </Wrapper>
   )
-};
-
-CalendarHeader.propTypes = {
-  heading: PropTypes.string.isRequired,
 };
 
 export default CalendarHeader

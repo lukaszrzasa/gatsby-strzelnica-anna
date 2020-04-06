@@ -6,7 +6,7 @@ import {
   SET_INFO,
   SET_PEOPLE,
   SET_PHONE,
-  SET_MONTH,
+  SET_MONTH, SET_NAME, SET_ERROR, SET_CSRF,
 } from './types'
 
 export const setHourStart = (hour) => ({
@@ -43,14 +43,29 @@ export const setDate = (year, month, day) => ({
   },
 });
 
+export const setName = (name) => ({
+  type: SET_NAME,
+  payload: name,
+});
+
+export const setError = (error) => ({
+  type: SET_ERROR,
+  payload: error,
+});
+
+
 
 export const setMonth = (data) => ({
   type: SET_MONTH,
   payload: data,
 });
 
-
 export const setDay = (data) => ({
   type: SET_DAY,
   payload: data,
-})
+});
+
+export const setCsrf = (token) => ({
+  type: SET_CSRF,
+  payload: token,
+});

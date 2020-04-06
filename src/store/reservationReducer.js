@@ -1,14 +1,16 @@
-import { SET_DATE, SET_HOUR_START, SET_HOURS, SET_INFO, SET_PEOPLE, SET_PHONE } from './types'
+import { SET_DATE, SET_ERROR, SET_HOUR_START, SET_HOURS, SET_INFO, SET_NAME, SET_PEOPLE, SET_PHONE } from './types'
 
 const initialState = {
-  year: 0,
-  month: 0,
-  day: 0,
+  year: new Date().getFullYear(),
+  month: new Date().getMonth(),
+  day: new Date().getDate(),
   hourStart: null,
   hours: 1,
   people: 1,
   phone: '',
+  name: '',
   info: '',
+  error: '',
 };
 
 
@@ -38,6 +40,16 @@ const reservationReducer = (state = initialState, action) => {
       return {
         ...state,
         info: action.payload,
+      }
+    case SET_NAME:
+      return {
+        ...state,
+        name: action.payload,
+      }
+    case SET_ERROR:
+      return {
+        ...state,
+        error: action.payload,
       }
     case SET_DATE:
       const { year, month, day } = action.payload;
