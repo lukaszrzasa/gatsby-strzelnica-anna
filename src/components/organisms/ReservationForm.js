@@ -73,16 +73,11 @@ const ReservationForm = () => {
     for(let i=0; i<hours; i++){
       chosenHours.push(hourStart+i);
     }
-    const instance = axios.create({
-      withCredentials: true,
-      headers: {
-        'X-CSRF-TOKEN': csrf_token,
-      },
-    })
     try {
-      const response = await instance.post(
-        `${API_URL}/calendar/put-reservation/`,
-        {
+      const response = await axios({
+        url: `${API_URL}/calendar/put-reservation`,
+        method:'POST',
+        data: {
           y,
           m,
           d,
@@ -92,8 +87,11 @@ const ReservationForm = () => {
           name,
           info,
           _method: 'PUT',
+        },
+        headers: {
+          'X-CSRF-TOKEN': csrf_token,
         }
-      );
+      });
       console.log(response.data);
     } catch (e) {
       console.log(JSON.parse(JSON.stringify(e)));
