@@ -7,7 +7,7 @@ import {
   setCsrf,
   setDay,
   setError,
-  setHours,
+  setHours, setHourStart,
   setInfo,
   setMonth,
   setName,
@@ -31,7 +31,7 @@ export const formatHour = (hour) => { // range: 1 - 3, and no more
   if(hour===1) return '1 godzinę';
   else return `${hour} godziny`;
 }
-
+export const formatHourNum = (hour) => `${hour}:00`;
 export const formatPeople = (people) => { // range: 1 - 15
   if(people===1) return '1 osoba';
   else if(people<=4) return `${people} osoby`;
@@ -46,6 +46,7 @@ const ReservationForm = () => {
   const { dayStatus, csrf_token } = useSelector(({calendarData}) => calendarData);
   const [ isUpdating, setIsUpdating ] = useState(false);
   const dispatch = useDispatch();
+  const { hour_open, hour_close } = dayStatus;
 
   const { error } = dayStatus;
 
@@ -158,6 +159,15 @@ const ReservationForm = () => {
         {!error && <>
           <Text>Wybrałeś dzień {lz(day)}.{lz(month+1)}.{year}</Text>
           <Text>O której godzinie chcesz zacząć?</Text>
+          <Range
+            evSetValue={(hourStart) => dispatch(setHourStart(hourStart))}
+            min={hour_open}
+            max={hour_close}
+            step={1}
+            stepLarge={4}
+            format={formatHourNum}
+            value={hourStart || hour_open}
+          />
           <Text>Jak długo chcesz u Nas być?</Text>
           <Range
             evSetValue={(hours) => dispatch(setHours(hours))}

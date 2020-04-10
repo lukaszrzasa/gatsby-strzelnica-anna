@@ -13,7 +13,7 @@ const Wrapper = styled.div`
 `;
 
 
-const Range = ({ evSetValue, min, max, step, format, value }) => {
+const Range = ({ evSetValue, min, max, step, stepLarge, format, value }) => {
   const handleClick = (amount) => {
     const newValue = value+amount;
     if(newValue < min) evSetValue(min);
@@ -23,6 +23,9 @@ const Range = ({ evSetValue, min, max, step, format, value }) => {
 
   return (
     <Wrapper>
+      {stepLarge && <CircleBtn onClick={()=>handleClick(-stepLarge)}>
+        -{stepLarge}
+      </CircleBtn>}
       <CircleBtn onClick={()=>handleClick(-step)}>
         <Icon icon="minus"/>
       </CircleBtn>
@@ -32,6 +35,9 @@ const Range = ({ evSetValue, min, max, step, format, value }) => {
       <CircleBtn onClick={()=>handleClick(step)}>
         <Icon icon="plus"/>
       </CircleBtn>
+      {stepLarge && <CircleBtn onClick={()=>handleClick(stepLarge)}>
+        +{stepLarge}
+      </CircleBtn>}
     </Wrapper>
   )
 }
@@ -40,6 +46,7 @@ Range.propTypes = {
   min: PropTypes.number.isRequired,
   max: PropTypes.number.isRequired,
   step: PropTypes.number.isRequired,
+  stepLarge: PropTypes.number,
   format: PropTypes.func,
   evSetValue: PropTypes.func.isRequired,
 }
