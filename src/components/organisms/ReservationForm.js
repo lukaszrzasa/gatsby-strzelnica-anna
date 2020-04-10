@@ -159,7 +159,7 @@ const ReservationForm = () => {
         {!error && <>
           <Text>Wybrałeś dzień {lz(day)}.{lz(month+1)}.{year}</Text>
           <Text>O której godzinie chcesz zacząć?</Text>
-          <Range
+          {hour_open && hour_close && <Range
             evSetValue={(hourStart) => dispatch(setHourStart(hourStart))}
             min={hour_open}
             max={hour_close}
@@ -167,7 +167,7 @@ const ReservationForm = () => {
             stepLarge={4}
             format={formatHourNum}
             value={hourStart || hour_open}
-          />
+          />}
           <Text>Jak długo chcesz u Nas być?</Text>
           <Range
             evSetValue={(hours) => dispatch(setHours(hours))}

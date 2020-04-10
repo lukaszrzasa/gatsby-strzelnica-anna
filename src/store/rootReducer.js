@@ -1,6 +1,7 @@
 import { combineReducers, createStore } from 'redux'
 import reservation from './reservationReducer'
 import calendarData from './calendarDataReducer';
+import { composeWithDevTools } from 'redux-devtools-extension'
 
 
 const rootReducer = combineReducers({
@@ -8,4 +9,4 @@ const rootReducer = combineReducers({
   calendarData,
 });
 
-export const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+export const store = createStore(rootReducer, composeWithDevTools());
