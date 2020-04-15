@@ -52,6 +52,9 @@ query pageHistory {
         ...Paragraph
       }
     }
+    seo {
+        ...Seo
+    }
   }
 }
 `;

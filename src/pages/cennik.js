@@ -15,9 +15,6 @@ import SkewSection from '../components/molecules/SkewSection'
 import AmmoItem from '../components/molecules/offer/AmmoItem'
 import ServiceItem from '../components/molecules/offer/ServiceItem'
 
-const seo = {
-  title: 'Cennik'
-}
 
 const PackagesWrapper = styled(Container)`
   display: flex;
@@ -110,10 +107,10 @@ const Pricing = ({data}) => {
 
   return (
     <Default>
-      <SEO {...seo} />
+      <SEO {...data.datoCmsPagePricing.seo} />
       <Container>
         <PageHeading
-          title={seo.title}
+          title="Cennik"
         />
       </Container>
       {paymentsMethods}
@@ -157,6 +154,11 @@ export const query = graphql`
         }
         weaponPrice
         price
+      }
+    }
+    datoCmsPagePricing {
+      seo {
+        ...Seo
       }
     }
   }

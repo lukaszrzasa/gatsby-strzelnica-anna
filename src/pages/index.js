@@ -150,7 +150,7 @@ const IndexPage = ({data}) => {
   const { index } = data;
   return(
     <Default>
-      <SEO title="Strona Główna" />
+      <SEO { ...index.seo }/>
       {sectionWelcome}
       {index && <>
         {sectionPricing(index.pricingDesc, index.pricingPhoto1, index.pricingPhoto1)}
@@ -195,6 +195,9 @@ export const query = graphql`
         }
       }
       contactDesc
+      seo {
+        ...Seo
+      }
     }
   }
 `;

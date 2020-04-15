@@ -6,19 +6,16 @@ import PageHeading from '../components/molecules/PageHeading'
 import Calendar from '../components/organisms/Calendar'
 import Flex2Equal from '../components/atoms/Flex2Equal'
 import ReservationForm from '../components/organisms/ReservationForm'
+import { graphql } from 'gatsby'
 
 
-const seo = {
-  title: 'Rezerwacje'
-}
-
-const Contact = () => {
+const Contact = ({data}) => {
   return (
     <Default>
-      <SEO {...seo} />
+      <SEO {...data.datoCmsPageReservation.seo} />
       <Container>
         <PageHeading
-          title={seo.title}
+          title="Rezerwacje"
         />
         <Flex2Equal>
           <div>
@@ -32,5 +29,14 @@ const Contact = () => {
     </Default>
   );
 };
+export const query = graphql`
+  query pageReservation {
+    datoCmsPageReservation {
+      seo {
+        ...Seo
+      }
+    }
+  }
+`;
 
 export default Contact;

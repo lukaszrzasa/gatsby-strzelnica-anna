@@ -6,17 +6,14 @@ import ModularContent from '../components/organisms/DatoCMS/ModularContent'
 import Container from '../components/atoms/Container'
 import PageHeading from '../components/molecules/PageHeading'
 
-const seo = {
-  title: '10 Strzałów'
-}
 
 const ShootingEvent = ({data}) => {
   return (
     <Default>
-      <SEO {...seo} />
+      <SEO {...data.datoCmsPageShootingEvent.seo} />
       <Container>
         <PageHeading
-          title={seo.title}
+          title="10 Strzałów"
           subtitle="ku chwale ojczyzny"
         />
         {data && <ModularContent content={data.datoCmsPageShootingEvent.content}/>}
@@ -53,6 +50,9 @@ query pageShootingEvent {
       ... on DatoCmsParagraph {
         ...Paragraph
       }
+    }
+    seo {
+        ...Seo
     }
   }
 }

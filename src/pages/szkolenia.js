@@ -19,17 +19,13 @@ const Wrapper = styled(Container)`
 `;
 
 
-const seo = {
-  title: 'Szkolenia',
-}
-
 const Training = ({data}) => {
   return (
     <Default>
-      <SEO {...seo} />
+      <SEO {...data.datoCmsPageTraining.seo} />
       <Wrapper>
         <PageHeading
-          title={seo.title}
+          title="Oferta szkoleniowa"
         />
         <Paragraph>
           Oferta szkoleniowa dla osób pełnoletnich
@@ -96,6 +92,9 @@ export const query = graphql`
         ... on DatoCmsParagraph {
           ...Paragraph
         }
+      }
+      seo {
+        ...Seo
       }
     }
   }  

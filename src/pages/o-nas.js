@@ -9,7 +9,7 @@ import PageHeading from '../components/molecules/PageHeading'
 const AboutUs = ({data}) => {
   return (
     <Default>
-      <SEO title="O nas" />
+      <SEO {...data.datoCmsPageAbout.seo} />
       <Container>
         <PageHeading title="O nas"/>
         <ModularContent content={data.datoCmsPageAbout.content}/>
@@ -47,6 +47,9 @@ query pageAbout {
       ... on DatoCmsParagraph {
         ...Paragraph
       }
+    }
+    seo {
+      ...Seo
     }
   }
 }

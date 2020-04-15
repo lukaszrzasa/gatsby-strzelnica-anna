@@ -12,9 +12,6 @@ import { ColorBlock } from '../components/atoms/Color'
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 
-const seo = {
-  title: 'Kontakt'
-}
 
 const InnerWrapper = styled.div`
   display: flex;
@@ -43,9 +40,9 @@ const StyledIcon = styled(Icon)`
 const Contact = ({data, google}) => {
   return (
     <Default>
-      <SEO {...seo} />
+      <SEO {...data.datoCmsPageContact.seo} />
       <Container>
-        <PageHeading title={seo.title} />
+        <PageHeading title="Kontakt" />
         <InnerWrapper>
           <PhoneWrapper>
             <div>
@@ -117,6 +114,11 @@ export const query = graphql`
       }
       call_weekend_close: datoCmsVariable(key: {eq: "CLOSE_HOUR_PHONE_CALL_WEEKEND"}) {
         value
+      }
+      datoCmsPageContact {
+          seo {
+              ...Seo
+          }
       }
   }
 `;
