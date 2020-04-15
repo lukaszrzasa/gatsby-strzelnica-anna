@@ -6,7 +6,7 @@ import Range from '../molecules/Range'
 import {
   setCsrf,
   setDay,
-  setError,
+  setErrors,
   setHours, setHourStart,
   setInfo,
   setMonth,
@@ -37,18 +37,24 @@ export const formatPeople = (people) => { // range: 1 - 15
   else if(people<=4) return `${people} osoby`;
   else return `${people} osób`;
 }
+export const showError = (key,errors) => {
+  if(Object.keys(errors).find(k=>k===key)){
+    const msg = typeof errors[key]==='string' ? errors[key] : errors[key][0];
+    return (<Color color="red">{msg}</Color>);
+  }
+  return null;
+};
 
 // leading zero
 export const lz = (e) => e<10 ? `0${e}` : `${e}`;
 
 const ReservationForm = () => {
-  const { year, month, day, hourStart, hours, people, phone, info, name } = useSelector(({reservation}) => reservation);
+  const { year, month, day, hourStart, hours, people, phone, info, name, errors } = useSelector(({reservation}) => reservation);
   const { dayStatus, csrf_token } = useSelector(({calendarData}) => calendarData);
   const [ isUpdating, setIsUpdating ] = useState(false);
   const dispatch = useDispatch();
   const { hour_open, hour_close } = dayStatus;
 
-  const { error } = dayStatus;
 
   const handlePhoneChange = ({target}) => {
     dispatch(setPhone(
@@ -80,7 +86,7 @@ const ReservationForm = () => {
         method:'POST',
         data: {
           y,
-          m,
+          m:m+1,
           d,
           people,
           hours: chosenHours,
@@ -93,9 +99,10 @@ const ReservationForm = () => {
           'X-CSRF-TOKEN': csrf_token,
         }
       });
-      console.log(response.data);
+      const { errors } = response.data;
+      dispatch(setErrors(errors || {}));
     } catch (e) {
-      console.log(JSON.parse(JSON.stringify(e)));
+      console.log(e);
     }
   };
 
@@ -113,7 +120,7 @@ const ReservationForm = () => {
           dispatch(setMonth(response.data));
         }
       } catch (e) {
-        dispatch(setError(networkErrorMsg))
+        dispatch(setErrors({ network:networkErrorMsg }))
       }
 
     };
@@ -133,14 +140,10 @@ const ReservationForm = () => {
       try {
         const response = await axios.get(url);
         if(response.data && !isCanceled){
-          const { csrf_token, ...rest } = response.data;
-          batch(() => {
-            dispatch(setDay(rest));
-            dispatch(setCsrf(csrf_token));
-          });
+          dispatch(setDay(response.data));
         }
       } catch (e) {
-        dispatch(setError(networkErrorMsg))
+        dispatch(setErrors({ network:networkErrorMsg }))
       }
       setIsUpdating(false);
     };
@@ -155,8 +158,8 @@ const ReservationForm = () => {
     <div>
       {isUpdating && <>Ładowanie...</>}
       {!isUpdating && <>
-        {error && <Color color="red">{error}</Color>}
-        {!error && <>
+        {showError('network', errors)}
+        {!errors.network && <>
           <Text>Wybrałeś dzień {lz(day)}.{lz(month+1)}.{year}</Text>
           <Text>O której godzinie chcesz zacząć?</Text>
           {hour_open && hour_close && <Range
@@ -177,6 +180,7 @@ const ReservationForm = () => {
             format={formatHour}
             value={hours}
           />
+          {showError('hours', errors)}
           <Text>Dla ilu osób chcesz zarezerwować?</Text>
           <Range
             evSetValue={(people) => dispatch(setPeople(people))}
@@ -186,18 +190,21 @@ const ReservationForm = () => {
             format={formatPeople}
             value={people}
           />
+          {showError('people', errors)}
           <Text>Podaj nam swój numer telefonu</Text>
           <Input
             value={phone}
             onChange={handlePhoneChange}
             type="text"
           />
+          {showError('phone', errors)}
           <Text>Imię i nazwisko</Text>
           <Input
             value={name}
             onChange={handleNameChange}
             type="text"
           />
+          {showError('name', errors)}
           <Text>Czy chcesz nam przekazać dodatkowe informacje?</Text>
           <Textarea
             value={info}

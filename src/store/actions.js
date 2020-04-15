@@ -6,7 +6,7 @@ import {
   SET_INFO,
   SET_PEOPLE,
   SET_PHONE,
-  SET_MONTH, SET_NAME, SET_ERROR, SET_CSRF,
+  SET_MONTH, SET_NAME, SET_ERRORS, SET_CSRF,
 } from './types'
 
 export const setHourStart = (hour) => ({
@@ -48,9 +48,9 @@ export const setName = (name) => ({
   payload: name,
 });
 
-export const setError = (error) => ({
-  type: SET_ERROR,
-  payload: error,
+export const setErrors = (errors) => ({
+  type: SET_ERRORS,
+  payload: errors,
 });
 
 
