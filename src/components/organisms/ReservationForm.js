@@ -4,7 +4,6 @@ import styled from 'styled-components'
 import Color from '../atoms/Color'
 import Range from '../molecules/Range'
 import {
-  setCsrf,
   setDay,
   setErrors,
   setHours, setHourStart,
@@ -19,8 +18,10 @@ import Textarea from '../atoms/Textarea'
 import axios from 'axios';
 import { getFirstDay } from '../molecules/CalendarBody'
 import { API_URL } from '../../core/config'
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby'
 import Button from '../atoms/Button'
+import { Heading } from '../atoms/Heading'
+import Paragraph from '../atoms/Paragraph'
 
 
 const Text = styled.div``;
@@ -50,11 +51,20 @@ export const lz = (e) => e<10 ? `0${e}` : `${e}`;
 
 const ReservationForm = () => {
   const { year, month, day, hourStart, hours, people, phone, info, name, errors } = useSelector(({reservation}) => reservation);
-  const { dayStatus, csrf_token } = useSelector(({calendarData}) => calendarData);
+  const { dayStatus } = useSelector(({calendarData}) => calendarData);
   const [ isUpdating, setIsUpdating ] = useState(false);
   const dispatch = useDispatch();
+  const [ isSuccess, setIsSuccess ] = useState(false);
   const { hour_open, hour_close } = dayStatus;
 
+  const staticQuery = useStaticQuery(graphql`
+    query phone_no {
+      datoCmsVariable(key: {eq: "PHONE_NO"}) {
+        value
+      }
+    }
+  `);
+  const phoneNo = staticQuery && staticQuery.datoCmsVariable ? staticQuery.datoCmsVariable.value : 'xxx xxx xxx';
 
   const handlePhoneChange = ({target}) => {
     dispatch(setPhone(
@@ -95,14 +105,18 @@ const ReservationForm = () => {
           info,
           _method: 'PUT',
         },
-        headers: {
-          'X-CSRF-TOKEN': csrf_token,
-        }
+        // headers: {
+        //   'X-CSRF-TOKEN': csrf_token,
+        // }
       });
-      const { errors } = response.data;
-      dispatch(setErrors(errors || {}));
+      const { errors, success } = response.data;
+      console.log(response.data);
+      if(success) {
+        setIsSuccess(true);
+        dispatch(setErrors({}));
+      } else dispatch(setErrors(errors || {}));
     } catch (e) {
-      console.log(e);
+      dispatch(setErrors({network:networkErrorMsg}));
     }
   };
 
@@ -117,7 +131,10 @@ const ReservationForm = () => {
       try {
         const response = await axios.get(url);
         if(response.data && !isCanceled){
-          dispatch(setMonth(response.data));
+          batch(() => {
+            dispatch(setErrors({}));
+            dispatch(setMonth(response.data));
+          });
         }
       } catch (e) {
         dispatch(setErrors({ network:networkErrorMsg }))
@@ -140,7 +157,10 @@ const ReservationForm = () => {
       try {
         const response = await axios.get(url);
         if(response.data && !isCanceled){
-          dispatch(setDay(response.data));
+          batch(() => {
+            dispatch(setErrors({}));
+            dispatch(setDay(response.data));
+          });
         }
       } catch (e) {
         dispatch(setErrors({ network:networkErrorMsg }))
@@ -159,7 +179,12 @@ const ReservationForm = () => {
       {isUpdating && <>Ładowanie...</>}
       {!isUpdating && <>
         {showError('network', errors)}
-        {!errors.network && <>
+        {isSuccess && <>
+          <Heading>Udało się</Heading>
+          <Paragraph>Mamy To! Masz teraz 24 godziny na potwierdzenie rezerwacji telefonicznie, zanim ona wygaśnie.</Paragraph>
+          <Heading>{phoneNo}</Heading>
+        </>}
+        {!isSuccess && <>
           <Text>Wybrałeś dzień {lz(day)}.{lz(month+1)}.{year}</Text>
           <Text>O której godzinie chcesz zacząć?</Text>
           {hour_open && hour_close && <Range

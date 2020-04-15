@@ -2,7 +2,7 @@ import React from "react"
 
 import Layout from "../components/templates/Default"
 import SEO from "../core/Seo"
-
+//TODO - add some beautiful page
 const NotFoundPage = () => (
   <Layout>
     <SEO title="404: Not found" />
