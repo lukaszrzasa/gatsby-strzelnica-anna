@@ -10,7 +10,7 @@ export const ColorBlock = styled.div`
   color: ${({color}) => getColor(color)};
 `;
 
-Color.proTypes = {
+Color.propTypes = {
   color: PropTypes.string.isRequired,
 };
 
