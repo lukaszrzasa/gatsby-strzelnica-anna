@@ -108,6 +108,15 @@ fragment Attachment on DatoCmsAttachment {
   text
   options
 }
+
+fragment Seo on DatoCmsSeoField {
+  description
+  title
+  twitterCard
+  image {
+    url
+  }
+}
 `;
 
 
